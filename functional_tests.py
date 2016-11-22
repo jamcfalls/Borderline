@@ -49,14 +49,24 @@ class NewVisitorTest(unittest.TestCase):
         m=self.browser.find_element_by_tag_name('img')
         self.assertIn('home.jpg',m.get_attribute('src'))
 
-        a=self.browser.find_element_by_id('livingontheborderline')
+        a=self.browser.find_element_by_id('home')
         a.click()
 
         self.assertIn('handsup',self.browser.title)
 
         h=self.browser.find_element_by_tag_name('h1')
         m=self.browser.find_element_by_tag_name('img')
+        
+        # the user goes back to the homepage
+        self.browser.get('http://localhost:8000/index.html')
+        # the user sees at the bottom of the page a link to credits
+        l=self.browser.find_element_by_link_text('Credits')
+        # the user clicks on the credits link
+        l.click()
 
+        # and sees the credits.html page
+        a=self.browser.current_url
+        self.assertIn("Credits",a)
        
 
 if __name__=="__main__":
