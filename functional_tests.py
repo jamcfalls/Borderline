@@ -52,6 +52,13 @@ class NewVisitorTest(unittest.TestCase):
         a=self.browser.find_element_by_id('home')
         a.click()
 
+        #around the girls there is a clickable area
+        self.browser.get('http://localhost:8000/index.html')
+        a=self.browser.find_element_by_id('home')
+        #when I click on the girls, I get the handsup page
+        a.click()
+        
+
         self.assertIn('handsup',self.browser.title)
 
         h=self.browser.find_element_by_tag_name('h1')
