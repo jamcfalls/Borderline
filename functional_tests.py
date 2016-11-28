@@ -50,6 +50,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('home.jpg',m.get_attribute('src'))
 
         a=self.browser.find_element_by_id('home')
+        #this is the test for the clickable area
         a.click()
 
         #around the girls there is a clickable area
@@ -63,6 +64,16 @@ class NewVisitorTest(unittest.TestCase):
 
         h=self.browser.find_element_by_tag_name('h1')
         m=self.browser.find_element_by_tag_name('img')
+        self.assertIn('handsup.jpg',m.get_attribute('src'))
+
+        a=self.browser.find_element_by_id('dock')
+        a.click()
+
+        # after a click on the area, you see the dock page
+        h=self.browser.find_element_by_tag_name('h1')
+        self.assertIn("Dock",h.text)
+        
+
         
         # the user goes back to the homepage
         self.browser.get('http://localhost:8000/index.html')
@@ -75,6 +86,6 @@ class NewVisitorTest(unittest.TestCase):
         a=self.browser.current_url
         self.assertIn("Credits",a)
        
-
+        
 if __name__=="__main__":
         unittest.main(warnings="ignore")
